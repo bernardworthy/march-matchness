@@ -5,4 +5,3 @@ function processHash() {
 
 window.addEventListener('hashchange', processHash);
 processHash();
-console.log('test');
