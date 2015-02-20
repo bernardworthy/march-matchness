@@ -6,7 +6,7 @@ app.router.add('easy', function(){
     var app = {};
 
     app.getCards = function(numPairs) {
-      var cards = 'abcdefghijklmnop'.split('').slice(0, numPairs);
+      var cards = 'CDSVGYNMW'.split('').slice(0, numPairs);
 
       var cardsArr = cards.concat(cards);
 
