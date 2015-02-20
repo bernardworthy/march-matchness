@@ -1,8 +1,10 @@
 body {
-    font-family: sans-serif;
-    line-height: 1.4em;
-    background: #FFF;
-    color: #444;
+  font-family: sans-serif;
+  // line-height: 1.4em;
+  color: white;
+  background: #3F51B5;
+  background-image: url(../img/court.jpg);
+  background-attachment: fixed;
 }
 
 h1 { font-size: 2em; margin: .67em 0 }
@@ -16,7 +18,7 @@ h5, h6 {
 }
 
 p {
-  line-height: 1.4em;
+  // line-height: 1.4em;
   margin-bottom: 1em;
 }
 
