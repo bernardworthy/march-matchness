@@ -12,4 +12,4 @@ function showWinScreen() {
   }
 
   $('.game-board').html('<h1>You won the NCAA Tournament! In ' + app.clockStr + ' of playing time you scored ' + score + ' point(s)!</h1>');
-};
+}
