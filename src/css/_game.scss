@@ -195,19 +195,19 @@ a {
 //   bottom: 0;
 // }
 
-.checkbox:checked + .grid-card {
+.grid-cell {
   animation: flipInY .5s forwards;
 }
 
-.checkbox:not(:checked) +.grid-card {
+.grid-cell-not-clicked {
   animation: flipOutY .5s forwards;
 }
 
-.checkbox:checked + .grid-card .grid-icon {
+.grid-icon {
   animation: show .5s forwards;
 }
 
-.checkbox:not(:checked) + .grid-card .grid-icon {
+.grid-icon-not-clicked {
   animation: hide .5s forwards;
 }
 
