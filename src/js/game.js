@@ -3,8 +3,6 @@ app.router.add('easy', function(){
 
   function buildBoard() {
 
-    var app = {};
-
     app.getCards = function(numPairs) {
       var cards = 'CDSVGYNMW'.split('').slice(0, numPairs);
 
@@ -33,16 +31,83 @@ app.router.add('easy', function(){
     $('.grid').html(template({ deck: cardsArr}));
   }
 
-  // $('.grid-cell').click(function(e) {
-  //   var tile = e.target;
-  //   console.log(tile);
-  //   // e.preventDefault();
-  //   // e && (e.preventDefault() || e.stopPropagation());
-  // });
-  $('.grid').on('click', '.grid-cell', function(evt) {
+  var lives = 7;
+  var origLivesStr = 'hhhhhhh';
+  var gameOver = false;
+
+  function updateLives() {
+    var currentLivesStr = origLivesStr.slice(0, lives);
+    $('.lives')[0].innerText = currentLivesStr;
+    if (currentLivesStr.length < 1) {
+      gameOver = true;
+    }
+  }
+
+  updateLives();
+
+  function displayClock() {
+
+    var secs = '00';
+    var mins = '00';
+    var hours = '00';
+
+    function updateSecs() {
+      ++secs;
+      if (secs > 59) {
+        secs = 0;
+      }
+      if (secs < 10) {
+        secs = '0' + secs;
+      }
+    }
+
+    function updateMins() {
+      ++mins;
+      if (mins > 59) {
+        mins = 0;
+      }
+      if (mins < 10) {
+        mins = '0' + mins;
+      }
+    }
+
+    function updateHours() {
+      ++hours;
+      if (hours > 59) {
+        hours = 0;
+      }
+      if (hours < 10) {
+        hours = '0' + hours;
+      }
+    }
+
+    setInterval(updateSecs, 1000);
+    setInterval(updateMins, 60000);
+    setInterval(updateHours, 3600000);
+    setInterval(updateClock, 1000);
+
+    function updateClock() {
+      var clockStr = hours + ':' + mins + ':' + secs;
+      $('.clock')[0].innerText = clockStr;
+    }
+  }
+
+  displayClock(); 
+
+
+  function addClickHandler() {
+    $('.grid').on('click', '.grid-cell-not-clicked', gamePlay);
+  }
+
+  function removeClickHandler() {
+    $('.grid').off('click', '.grid-cell-not-clicked', gamePlay);
+  }
+
+  addClickHandler();
+
+  function gamePlay() {
     var tile = $(this);
     $(tile).addClass('clicked');
-    console.log(tile);
     $(tile).toggleClass('grid-cell-not-clicked');
 
     if ($('.clicked').length > 1) {
@@ -51,39 +116,25 @@ app.router.add('easy', function(){
         console.log('got a match');
         $('.clicked').removeClass('clicked');
       } else {
-
-        function flipBackOver() {
-          $('.clicked').toggleClass('grid-cell-not-clicked');
-          $('.clicked').removeClass('clicked');
-        }
-
+        --lives;
+        updateLives();
+        removeClickHandler();
         setTimeout(flipBackOver, 750);
+        setTimeout(addClickHandler, 750);
       }
     }
+  }
 
-    // if ($('.clicked-first').length > 0) {
-    //   console.log('we need to compare');
-    //   var firstTxt = $('.clicked-first')[0].innerText;
-    //   var secondTxt = $('.grid-icon', tile)[0].innerText;
-    //   $('.clicked-first').off('click');
-    //   tile.toggleClass('grid-cell-not-clicked');
-    //   $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
-    //
-    //   // if (firstTxt === secondTxt) {
-    //   //   console.log('got a match');
-    //   // } else {
-    //   //   console.log('not a match');
-    //   //   var clickedTile = $('.clicked');
-    //   //   clickedTile.toggleClass('grid-cell-not-clicked');
-    //   //   $('.grid-icon', clickedTile).toggleClass('grid-icon-not-clicked');
-    //   //   tile.toggleClass('grid-cell-not-clicked');
-    //   //   $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
-    //   //   $('.clicked').removeClass('clicked');
-    //   // }
-    //
-    // } else {
-    //   $(tile).toggleClass('grid-cell-not-clicked');
-    //   $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
-    // }
-  });
+  function flipBackOver() {
+    $('.clicked').toggleClass('grid-cell-not-clicked');
+    $('.clicked').removeClass('clicked');
+  }
+
+  // function turnOffClick(tile) {
+  //   $('.grid').off('click', '.grid-cell', gamePlay);
+  // }
+
+  if (gameOver) {
+    console.log('Game Over');
+  }
 });
