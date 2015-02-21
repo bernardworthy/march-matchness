@@ -41,42 +41,42 @@ app.router.add('easy', function(){
   // });
   $('.grid').on('click', '.grid-cell', function(evt) {
     var tile = $(this);
-
+    $(tile).addClass('clicked');
     console.log(tile);
+    $(tile).toggleClass('grid-cell-not-clicked');
 
-    if ($('.clicked').length > 0) {
-      console.log('we need to compare');
-      var firstTxt = $('.clicked')[0].innerText;
-      var secondTxt = $('.grid-icon', tile)[0].innerText;
-
-      if (firstTxt === secondTxt) {
-        console.log('got a match');
-      } else {
-        console.log('not a match');
-        var clickedTile = $('.clicked');
-        clickedTile.toggleClass('grid-cell-not-clicked');
-        $('.grid-icon', clickedTile).toggleClass('grid-icon-not-clicked');
-        tile.toggleClass('grid-cell-not-clicked');
-        $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
-        $(tile).removeClass('clicked');
+    if ($('.clicked').length > 1) {
+      function flipBackOver() {
+        $('.clicked').toggleClass('grid-cell-not-clicked');
+        $('.clicked').removeClass('clicked');
       }
-      // } else {
-      //   console.log('take away a life');
-      //   var clickedTile = $('.clicked')[0];
-      //
-      //   $(clickedTile).toggleClass('grid-cell-not-clicked');
-      //   $('.grid-icon', clickedTile).toggleClass('grid-icon-not-clicked');
-      //
-      //   $(tile).toggleClass('grid-cell-not-clicked');
-      //   $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
-      // }
-    } else {
-      $(tile).toggleClass('grid-cell-not-clicked');
-      $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
-      $(tile).addClass('clicked');
-      console.log('just added the class');
+
+      setTimeout(flipBackOver, 1000);
     }
-    // evt.stopPropagation();
-    // evt.preventDefault();
+
+    // if ($('.clicked-first').length > 0) {
+    //   console.log('we need to compare');
+    //   var firstTxt = $('.clicked-first')[0].innerText;
+    //   var secondTxt = $('.grid-icon', tile)[0].innerText;
+    //   $('.clicked-first').off('click');
+    //   tile.toggleClass('grid-cell-not-clicked');
+    //   $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
+    //
+    //   // if (firstTxt === secondTxt) {
+    //   //   console.log('got a match');
+    //   // } else {
+    //   //   console.log('not a match');
+    //   //   var clickedTile = $('.clicked');
+    //   //   clickedTile.toggleClass('grid-cell-not-clicked');
+    //   //   $('.grid-icon', clickedTile).toggleClass('grid-icon-not-clicked');
+    //   //   tile.toggleClass('grid-cell-not-clicked');
+    //   //   $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
+    //   //   $('.clicked').removeClass('clicked');
+    //   // }
+    //
+    // } else {
+    //   $(tile).toggleClass('grid-cell-not-clicked');
+    //   $('.grid-icon', tile).toggleClass('grid-icon-not-clicked');
+    // }
   });
 });

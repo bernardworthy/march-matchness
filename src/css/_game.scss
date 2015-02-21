@@ -197,19 +197,27 @@ a {
 
 .grid-cell {
   animation: flipInY .5s forwards;
+
+  .grid-icon {
+    animation: show .5s forwards;
+  }
 }
 
 .grid-cell-not-clicked {
   animation: flipOutY .5s forwards;
+
+  .grid-icon {
+    animation: hide .5s forwards;
+  }
 }
 
-.grid-icon {
-  animation: show .5s forwards;
-}
-
-.grid-icon-not-clicked {
-  animation: hide .5s forwards;
-}
+// .grid-icon {
+//   animation: show .5s forwards;
+// }
+//
+// .grid-icon-not-clicked {
+//   animation: hide .5s forwards;
+// }
 
 @keyframes flipInY {
   0% {
