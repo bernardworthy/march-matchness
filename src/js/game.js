@@ -31,15 +31,15 @@ app.router.add('easy', function(){
     $('.grid').html(template({ deck: cardsArr}));
   }
 
-  var lives = 7;
-  var origLivesStr = 'hhhhhhh';
-  var gameOver = false;
+  var lives = 10;
+  var origLivesStr = 'hhhhhhhhhh';
 
   function updateLives() {
     var currentLivesStr = origLivesStr.slice(0, lives);
     $('.lives')[0].innerText = currentLivesStr;
+    app.lives = currentLivesStr.length;
     if (currentLivesStr.length < 1) {
-      gameOver = true;
+      window.location.hash = '#lose';
     }
   }
 
@@ -89,11 +89,12 @@ app.router.add('easy', function(){
     function updateClock() {
       var clockStr = hours + ':' + mins + ':' + secs;
       $('.clock')[0].innerText = clockStr;
+      app.clockStr = clockStr;
+      app.secs = secs;
     }
   }
 
-  displayClock(); 
-
+  displayClock();
 
   function addClickHandler() {
     $('.grid').on('click', '.grid-cell-not-clicked', gamePlay);
@@ -123,18 +124,14 @@ app.router.add('easy', function(){
         setTimeout(addClickHandler, 750);
       }
     }
+
+    if ($('.grid-cell-not-clicked').length < 1) {
+      window.location.hash = '#win';
+    }
   }
 
   function flipBackOver() {
     $('.clicked').toggleClass('grid-cell-not-clicked');
     $('.clicked').removeClass('clicked');
-  }
-
-  // function turnOffClick(tile) {
-  //   $('.grid').off('click', '.grid-cell', gamePlay);
-  // }
-
-  if (gameOver) {
-    console.log('Game Over');
   }
 });
