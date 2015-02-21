@@ -46,12 +46,19 @@ app.router.add('easy', function(){
     $(tile).toggleClass('grid-cell-not-clicked');
 
     if ($('.clicked').length > 1) {
-      function flipBackOver() {
-        $('.clicked').toggleClass('grid-cell-not-clicked');
-        $('.clicked').removeClass('clicked');
-      }
 
-      setTimeout(flipBackOver, 1000);
+      if ($('.clicked')[0].innerText === $('.clicked')[1].innerText) {
+        console.log('got a match');
+        $('.clicked').removeClass('clicked');
+      } else {
+
+        function flipBackOver() {
+          $('.clicked').toggleClass('grid-cell-not-clicked');
+          $('.clicked').removeClass('clicked');
+        }
+
+        setTimeout(flipBackOver, 750);
+      }
     }
 
     // if ($('.clicked-first').length > 0) {
