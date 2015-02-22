@@ -1,6 +1,6 @@
 app.numLives = function(num) {
   app.lives = num;
-}
+};
 
 app.updateLives = function() {
   var origLivesStr = 'dddddddddddddddddddd';
