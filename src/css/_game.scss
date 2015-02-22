@@ -1,10 +1,55 @@
+.win:after {
+  content: "";
+  background: url(../img/marchmadness.jpg);
+  background-size: cover;
+  opacity: .5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
 
-.main {
-  // animation: bg-animate linear 10s infinite;
-  // background-color: #000;
-  // opacity: 1;
-  // height: 1000px;
-  // width: 1000px;
+.lose:after {
+  content: "";
+  background: url(../img/lose.jpg);
+  background-size: cover;
+  opacity: .8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.try-again-btn {
+  transform: translate(-50%, -50%);
+  position: relative;
+  left: 50%;
+  width: 100px;
+  height: 50px;
+  border: solid 1px #e6e6e6;
+  background: white;
+  border-radius: 5px;
+  margin-top: 4em;
+  font-size: 1.2em;
+  color: #9D281D;
+}
+
+.beat-score-btn {
+  transform: translate(-50%, -50%);
+  position: relative;
+  left: 50%;
+  width: 113px;
+  height: 60px;
+  border: solid 1px #e6e6e6;
+  background: white;
+  border-radius: 5px;
+  margin-top: 4em;
+  font-size: 1.2em;
+  color: #9D281D;
 }
 
 @keyframes bg-animate {
@@ -17,10 +62,6 @@
 }
 
 .new-game-container {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform-origin: 50% 100%;
   margin-top: 14em;
   animation: floating 1.5s ease-in-out infinite;
 }
@@ -44,7 +85,6 @@
   text-align: center;
   padding-top: .3em;
   text-transform: uppercase;
-  //margin-bottom: -1em;
 }
 
 .ball-icon {
@@ -57,14 +97,11 @@
   font-family: 'icon', sans-serif;
   padding-left: 3em;
   margin-top: -1.5em;
-  // padding-top: 2em;
   position: relative;
 }
 
 .lives {
-  // position: absolute;
-  // top: 2em;
-  // left: 7.5em;
+  font-size: 3em;
 }
 
 .clock {
@@ -118,11 +155,6 @@ a {
 .grid {
   text-align: justify;
   position: relative;
-  // background-image: url(/img/court.jpg);
-  // background-attachment: fixed;
-  // background-size: contain;
-  // background-repeat: no-repeat;
-  // width: auto;
   height: auto;
   padding: 7em;
   padding-top: 2em;
@@ -135,7 +167,7 @@ a {
   background: green;
 }
 
-.grid-cell {
+.grid-cell-easy {
   box-sizing: border-box;
   display: inline-block;
   margin: .1em;
@@ -144,10 +176,20 @@ a {
   border-bottom: 0;
   float: left;
   width: 16%;
-  // background: #7986cb;
 }
 
-.grid-cell:before {
+.grid-cell-hard {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: .1em;
+  position: relative;
+  border-right: 0;
+  border-bottom: 0;
+  float: left;
+  width: 12%;
+}
+
+.grid-cell-easy:before, .grid-cell-hard:before {
   content: '';
   float: left;
   padding-top: 100%;
@@ -172,31 +214,7 @@ a {
   background-size: cover;
 }
 
-// .grid-card:before {
-//   content: '';
-//   background: #7986cb;
-//   border-radius: .5em;
-//   display: block;
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   left: 0;
-//   bottom: 0;
-// }
-//
-// .grid-card:after {
-//   content: '';
-//   background: #7986cb;
-//   border-radius: .5em;
-//   display: block;
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   left: 0;
-//   bottom: 0;
-// }
-
-.grid-cell {
+.grid-cell-easy, .grid-cell-hard {
   animation: flipInY .5s forwards;
 
   .grid-icon {
@@ -211,14 +229,6 @@ a {
     animation: hide .5s forwards;
   }
 }
-
-// .grid-icon {
-//   animation: show .5s forwards;
-// }
-//
-// .grid-icon-not-clicked {
-//   animation: hide .5s forwards;
-// }
 
 @keyframes flipInY {
   0% {
@@ -305,5 +315,14 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // z-index: 200;
+}
+
+.win-message, .lose-message {
+  width: 700px;
+  font-weight: 100;
+  font-size: 2.9em;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }

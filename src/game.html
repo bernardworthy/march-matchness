@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>March Matchness</title>
+
+  <link rel="stylesheet" href="css/main.css">
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+  <link href="https://fontastic.s3.amazonaws.com/kT5YREMG7FZc24TfygiM4h/icons.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="title">
+
+    <p>March <span class="ball-icon">d</span> Matchness</p>
+
+  </div>
+
+  <div class="game-board">
+
+    <div class="notification-center">
+
+      <span class="lives"></span>
+      <span class="clock"></span>
+
+    </div>
+
+    <div class="grid"></div>
+
+  </div>
+
+  <script id="easy" type="text/html">
+    <% m.deck.forEach(function(card) { %>
+    <label class="grid-cell-easy grid-cell-not-clicked">
+      <span class="grid-card">
+        <span class="grid-icon"><%- card %></span>
+      </span>
+    </label>
+    <% }) %>
+  </script>
+
+  <script id="hard" type="text/html">
+    <% m.deck.forEach(function(card) { %>
+    <label class="grid-cell-hard grid-cell-not-clicked">
+      <span class="grid-card">
+        <span class="grid-icon"><%- card %></span>
+      </span>
+    </label>
+    <% }) %>
+  </script>
+
+  <script src="js/vendor.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
